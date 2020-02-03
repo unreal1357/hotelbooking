@@ -3,6 +3,7 @@ package com.api.hotelbooking.room;
 import org.aspectj.apache.bcel.generic.RET;
 import org.springframework.stereotype.Component;
 import java.util.ArrayList;
+import java.util.Iterator;
 import java.util.List;
 
 /*
@@ -60,5 +61,19 @@ methods to return a specific room and a method to return all the rooms
          }
     }
      return null; //means it is not found
+    }
+
+//    need to see what Iterator means and how it works
+//    this method deletes the resource and returning the resource back
+    public Room deleteById(int id) {
+        Iterator<Room> iterator = rooms.iterator();
+        while(iterator.hasNext()) {
+            Room room = iterator.next();
+            if(room.getId() ==id){ //if id matches
+                iterator.remove();// remove
+                return room;
+            }
+        }
+        return null; //means it is not found
     }
 }

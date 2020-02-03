@@ -42,4 +42,6 @@ public class CustomResponseEntityExceptionHandler extends ResponseEntityExceptio
                 (new Date(), ex.getMessage(), request.getDescription(false));
         return new ResponseEntity(exceptionDetails, HttpStatus.NOT_FOUND);
     }
+
+    //add one for booking too
 }

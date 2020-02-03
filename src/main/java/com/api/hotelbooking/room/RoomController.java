@@ -45,6 +45,16 @@ public class RoomController {
         return room;
     }
 
+
+    @DeleteMapping("/rooms/{id}")
+    public void DeleteRoom(@PathVariable int id){ //using @pathVariable means it will get the id from what is entered in the URL
+        Room room = service.deleteById(id); //calling deleteById method from DaoService
+        if(room==null)
+            throw new RoomNotFoundException("id-" + id); //if user is null return exception
+//        if user is deleted no response is given and has a status code of 200 -- maybe I could add a message saying its been deleted
+
+    }
+
 /*
 using postman to test POST requests
 Method returns status code 201 --> resource is created
