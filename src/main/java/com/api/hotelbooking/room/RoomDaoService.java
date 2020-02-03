@@ -28,9 +28,7 @@ public class RoomDaoService {
     private static int userCount = 3;
 //static methods can be called without creating an object of a class.
     static {
-        rooms.add(new Room(1, "Standard", "Two adults", 100));
-        rooms.add(new Room(2, "Family", "Two adults, Two children", 200));
-        rooms.add(new Room(3, "King", "Two adults", 300));
+        //rooms.add(new Room(1, "Standard", "Two adults", 100));
     }
 
 /*

@@ -6,3 +6,27 @@ Delete a room - DELETE /rooms/{id} -> /rooms/1
 retrieve room price - GET /rooms/{id}/price
 create a price for a room - POST /room/{id}/info ???
 get details of a specific room price GET /rooms/{id}/price ??
+
+
+Stuff that is done:
+
+Get all Rooms
+Get specific Room
+Post a new Room
+Delete a Room
+basic exception handling
+Swagger Documentation
+
+Stuff that still needs to be done:
+
+**NEXT** Link to MySQL using JPA - then link to docker later on
+
+add search filter to search rooms -- not sure how to do this --> Research
+    filter rooms by dates available
+    filter rooms by price
+    filter room by size -- would probably have to change this to an integer to get working
+
+add booking endpoint --> not sure how to pull data from room endpoint --> Research
+    -get bookings info
+    -post a new booking
+    -

@@ -1,0 +1,13 @@
+working on database connection
+
+have created a table called "room" by adding @entity to room class and have set the @Id to make it the primary key
+
+in the spring boot logs:
+Hibernate: create table room
+(
+id integer not null,
+name varchar(255),
+price integer not null,
+size varchar(255),
+primary key (id)
+)engine=InnoDB

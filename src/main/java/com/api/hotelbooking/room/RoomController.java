@@ -9,6 +9,7 @@ import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 import javax.validation.Valid;
 import java.net.URI;
 import java.util.List;
+import java.util.Optional;
 
 /*
 question - does saying @RestController make this a bean?
@@ -31,19 +32,29 @@ public class RoomController {
     @Autowired
     private RoomDaoService service; //creating "service" variable of type RoomDaoService class
 
+    @Autowired
+    private  RoomRepository roomRepository;
+
 //    retrieveAllRooms Method
     @GetMapping("/rooms")
     public List<Room> retrieveAllRooms(){
-        return service.findAll(); // Question - Can use because instance of RoomDaoService has been injected from auto wiring?
+        return roomRepository.findAll(); // Question - Can use because instance of RoomDaoService has been injected from auto wiring?
     }
 
 //    GET specific room Method
     @GetMapping("/rooms/{id}")
-    public Room retrieveRoom(@PathVariable int id){ //using @pathVariable means it will get the id from what is entered in the URL
-        Room room = service.findOne(id); //returns id that is in path URL
+    public Optional<Room> retrieveRoom(@PathVariable int id){ //using @pathVariable means it will get the id from what is entered in the URL
+
+        /*
+        what does optional do? ID either exists or it does not, when room is null or not null, returns a proper object
+        whenever try to find by an id, 2 possibilities, id exists or not
+        when it does not exist - comes back with a proper object so it will not be null
+         */
+        Optional<Room> room = roomRepository.findById(id); //returns id that is in path URL /////
 //        adding exception when searching invalid room id, gives 500 status code and can add an error message using UserNotFoundException class
-        if(room==null)
+        if(!room.isPresent()) //checking if user is present
             throw new RoomNotFoundException("id-" + id);
+
         return room;
     }
 
