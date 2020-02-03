@@ -1,0 +1,56 @@
+all the configuration is fired when starting up because of something called spring boot auto configuration
+
+spring boot looks at all classes/Jars which are available on the class path and based on whats there, it trys to configure,
+for example the dispatcher servlet. and the default error page that will show, transferring to JSON (Jackson does this)
+
+*****
+dispatcher servlet handles all the requests
+url request goes to dispatcher servlet first which knows all the URL mappings and then executes the required controller for the received request
+
+@ResponseBody is contained inside @RestController
+
+example of process
+
+RoomBean example goes to dispatcher servlet
+dispatcher servlet finds Room Controller and the specific method RoomBean
+calls it, gets the bean invokes conversion to JSON using Jackson and returns the response
+
+
+**********
+
+Bean definition
+
+*****A JavaBean is just a standard*****
+
+All properties private (use getters/setters)
+A public no-argument constructor
+Implements Serializable.
+That's it. It's just a convention. Lots of libraries depend on it though.
+
+With respect to Serializable, from the API documentation:
+
+Serializability of a class is enabled by the class implementing the java.io.Serializable interface.
+Classes that do not implement this interface will not have any of their state serialized or deserialized.
+All subtypes of a serializable class are themselves serializable.
+The serialization interface has no methods or fields and serves only to identify the semantics of being serializable.
+In other words, serializable objects can be written to streams, and hence files, object databases, anything really.
+
+Also, there is no syntactic difference between a JavaBean and another class -- a class is a JavaBean if it follows the standards.
+
+There is a term for it because the standard allows libraries to programmatically do things with class instances you define in a predefined way.
+ or example, if a library wants to stream any object you pass into it, it knows it can because your object is serializable
+ (assuming the lib requires your objects be proper JavaBeans).
+
+
+
+
+<dependency>
+<groupId>mysql</groupId>
+<artifactId>mysql-connector-java</artifactId>
+<scope>runtime</scope>
+</dependency>
+
+<dependency>
+<groupId>org.springframework.boot</groupId>
+<artifactId>spring-boot-starter-data-jpa</artifactId>
+</dependency>

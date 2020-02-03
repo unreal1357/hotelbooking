@@ -3,7 +3,9 @@ package com.api.hotelbooking;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
-//this will work if i get the sql server running on this machine and use localhost instead
+/*
+Using H2 Database for now as its easier to test with, will implement mySQL server later
+ */
 
 @SpringBootApplication
 public class HotelbookingApplication {
