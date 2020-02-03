@@ -63,17 +63,11 @@ methods to return a specific room and a method to return all the rooms
      return null; //means it is not found
     }
 
-//    need to see what Iterator means and how it works
 //    this method deletes the resource and returning the resource back
+    //returning 404 error - i want it to return 200 - to fix
     public Room deleteById(int id) {
-        Iterator<Room> iterator = rooms.iterator();
-        while(iterator.hasNext()) {
-            Room room = iterator.next();
-            if(room.getId() ==id){ //if id matches
-                iterator.remove();// remove
-                return room;
-            }
-        }
+        rooms.removeIf(room -> room.getId().equals(id));
+
         return null; //means it is not found
     }
 }
