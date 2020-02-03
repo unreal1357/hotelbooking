@@ -1,0 +1,21 @@
+package com.api.hotelbooking;
+
+import org.springframework.context.annotation.Bean;
+import org.springframework.context.annotation.Configuration;
+import springfox.documentation.spi.DocumentationType;
+import springfox.documentation.spring.web.plugins.Docket;
+import springfox.documentation.swagger2.annotations.EnableSwagger2;
+
+
+/*
+swagger configuration
+ */
+@Configuration //declares as spring bean
+@EnableSwagger2 //enables swagger
+public class SwaggerConfig {
+
+    @Bean
+    public Docket aip(){
+        return new Docket(DocumentationType.SWAGGER_2);
+    }
+}

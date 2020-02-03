@@ -68,7 +68,7 @@ e.g http://localhost8081:8081/rooms/4
     //@RequestBody, whatever i parse into POST body of request will be mapped to "room" parameter here
     //when get a request to create a room want to validate content, enabling validation on this specific room
 //    using @Valid - Java Validation API
-    public ResponseEntity<Object> createUser(@Valid @RequestBody Room room) { //adding validations from Room bean
+    public ResponseEntity<Object> createRoom(@Valid @RequestBody Room room) { //adding validations from Room bean
         Room savedRoom = service.save(room);
 
         //returning output from post request to show it was successful
