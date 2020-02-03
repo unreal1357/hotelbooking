@@ -1,10 +1,12 @@
 package com.api.hotelbooking.room;
 
+import com.api.hotelbooking.Exceptions.RoomNotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
+import javax.validation.Valid;
 import java.net.URI;
 import java.util.List;
 
@@ -64,7 +66,9 @@ e.g http://localhost8081:8081/rooms/4
 
     @PostMapping("/rooms") //using post because... using POST request
     //@RequestBody, whatever i parse into POST body of request will be mapped to "room" parameter here
-    public ResponseEntity<Object> createUser(@RequestBody Room room) {
+    //when get a request to create a room want to validate content, enabling validation on this specific room
+//    using @Valid - Java Validation API
+    public ResponseEntity<Object> createUser(@Valid @RequestBody Room room) { //adding validations from Room bean
         Room savedRoom = service.save(room);
 
         //returning output from post request to show it was successful

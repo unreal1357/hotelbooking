@@ -1,8 +1,9 @@
 package com.api.hotelbooking.Exceptions;
 
-import com.api.hotelbooking.room.RoomNotFoundException;
+import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.MethodArgumentNotValidException;
 import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.RestController;
@@ -42,6 +43,18 @@ public class CustomResponseEntityExceptionHandler extends ResponseEntityExceptio
                 (new Date(), ex.getMessage(), request.getDescription(false));
         return new ResponseEntity(exceptionDetails, HttpStatus.NOT_FOUND);
     }
+
+//    Exception method to return exception when name is less than 3 characters
+//    handleMethodArgumentNotValid method is from ResponseEntityExceptionHandler. This error will show when @Size is less than 3 characters for "name" variable
+//    in this case it is binding to a method argument -  "Room" -- How? ---- getting name, size, and price and binding it to the Room object,handleMethodArgumentNotValid triggers
+//    when that happens
+    @Override
+    protected ResponseEntity<Object> handleMethodArgumentNotValid(MethodArgumentNotValidException ex, HttpHeaders headers, HttpStatus status, WebRequest request) {
+        ExceptionDetails exceptionDetails = new ExceptionDetails
+                (new Date(), "Validation Failed", ex.getBindingResult().toString());
+        return new ResponseEntity(exceptionDetails, HttpStatus.BAD_REQUEST);
+    }
+
 
     //add one for booking too
 }

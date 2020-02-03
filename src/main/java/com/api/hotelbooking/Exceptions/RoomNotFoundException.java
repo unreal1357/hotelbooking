@@ -1,4 +1,4 @@
-package com.api.hotelbooking.room;
+package com.api.hotelbooking.Exceptions;
 
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.ResponseStatus;
