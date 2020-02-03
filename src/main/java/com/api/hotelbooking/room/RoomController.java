@@ -81,6 +81,5 @@ e.g http://localhost8081:8081/rooms/4
 //        Response entity is part of spring framework, extension of httpEntity but adds a status code to return back also
 //        created allows to parse in the location of the resource which was created
         return ResponseEntity.created(location).build(); //used to return a created status
-
     }
 }

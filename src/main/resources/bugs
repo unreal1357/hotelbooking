@@ -1,0 +1,7 @@
+when deleting it doesnt return status code 200, replies with generic exception
+also returns generic exception when deleting a room ID that does not exist
+
+-expected output
+
+status code: 200
+body: empty
