@@ -1,11 +1,11 @@
 package com.api.hotelbooking.room;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
-import java.util.Arrays;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.*;
+import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
+
+import java.net.URI;
 import java.util.List;
 
 /*
@@ -38,6 +38,39 @@ public class RoomController {
 //    GET specific room Method
     @GetMapping("/rooms/{id}")
     public Room retrieveRoom(@PathVariable int id){ //using @pathVariable means it will get the id from what is entered in the URL
-        return service.findOne(id); //returns id that is in path URL
+        Room room = service.findOne(id); //returns id that is in path URL
+//        adding exception when searching invalid room id, gives 500 status code and can add an error message using UserNotFoundException class
+        if(room==null)
+            throw new RoomNotFoundException("id-" + id);
+        return room;
+    }
+
+/*
+using postman to test POST requests
+Method returns status code 201 --> resource is created
+in the headers of post request it shows location which has location of resource of the newly created room
+e.g http://localhost8081:8081/rooms/4
+ */
+
+    @PostMapping("/rooms") //using post because... using POST request
+    //@RequestBody, whatever i parse into POST body of request will be mapped to "room" parameter here
+    public ResponseEntity<Object> createUser(@RequestBody Room room) {
+        Room savedRoom = service.save(room);
+
+        //returning output from post request to show it was successful
+//      creating a status code in response body and showing new ID of room in body
+
+//        creating URL for 'location'
+        //next two lines this return current request URL it gets --> /user
+        URI location = ServletUriComponentsBuilder
+        .fromCurrentRequest()
+
+        .path("/{id}") //appending /id onto the end of /rooms to make show - /rooms/{created id}
+        .buildAndExpand(savedRoom.getId()).toUri(); //replacing /room/{id} with 'savedRoom.getID' which gets id from save method (creates new)
+
+//        Response entity is part of spring framework, extension of httpEntity but adds a status code to return back also
+//        created allows to parse in the location of the resource which was created
+        return ResponseEntity.created(location).build(); //used to return a created status
+
     }
 }

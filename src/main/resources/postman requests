@@ -1,0 +1,16 @@
+GET Requests
+
+http://localhost:8081/rooms
+http://localhost:8081/rooms/{id}
+
+
+POST requests
+
+http://localhost:8081/rooms
+
+Body
+{
+    "name": "Standard Room 2",
+    "size": "Single Adult",
+    "price": 60
+}

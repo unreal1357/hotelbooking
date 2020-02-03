@@ -1,7 +1,7 @@
-Retrieve all rooms - GET /rooms
-Create a room - POST /rooms
-Retrieve a user - GET /rooms/{id} -> /rooms/1
-Delete a user - DELETE /rooms/{id} -> /rooms/1
+Retrieve all rooms - GET /rooms ---- working
+Create a room - POST /rooms ----- working
+Retrieve a room - GET /rooms/{id} -> /rooms/1 ----- working
+Delete a room - DELETE /rooms/{id} -> /rooms/1
 
 retrieve room price - GET /rooms/{id}/price
 create a price for a room - POST /room/{id}/info ???
