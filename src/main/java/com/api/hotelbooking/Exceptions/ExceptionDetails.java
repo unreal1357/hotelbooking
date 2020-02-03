@@ -1,4 +1,4 @@
-package com.api.hotelbooking.room.Exceptions;
+package com.api.hotelbooking.Exceptions;
 
 import java.util.Date;
 

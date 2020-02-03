@@ -1,4 +1,4 @@
-package com.api.hotelbooking.room.Exceptions;
+package com.api.hotelbooking.Exceptions;
 
 import com.api.hotelbooking.room.RoomNotFoundException;
 import org.springframework.http.HttpStatus;
